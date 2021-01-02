@@ -58,9 +58,9 @@ if __name__ == '__main__':
         raise Exception('Invalid ROM')
 
     try:
+        print()
         run(args.port, args.path, args.verify)
     except KeyboardInterrupt:
         print('\n[+] Cancelled\n')
     except Exception as ex:
         print(ex)
-
