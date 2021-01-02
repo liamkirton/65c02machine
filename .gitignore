@@ -1,0 +1,4 @@
+.vscode
+rom/bin
+rom/obj
+venv
