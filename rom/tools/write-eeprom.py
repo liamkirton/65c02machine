@@ -47,14 +47,12 @@ def run(port, path, verify):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('port', type=str)
     parser.add_argument('path', type=str)
+    parser.add_argument('--port', type=str, default='')
     parser.add_argument('--verify', action='store_true', default=False)
     args = parser.parse_args()
 
-    if not args.port:
-        raise Exception('Invalid COM PORT')
-    elif not args.path:
+    if not args.path:
         raise Exception('Invalid ROM')
 
     try:
@@ -63,4 +61,6 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print('\n[+] Cancelled\n')
     except Exception as ex:
-        print(ex)
+        print()
+        print(f'Exception! {ex}')
+        print()

@@ -1,5 +1,5 @@
 ;
-; IRQ handling (NES version)
+; IRQ handling stub
 ;
 
         .export         initirq, doneirq

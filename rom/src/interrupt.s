@@ -6,7 +6,7 @@
 ;
 ; Checks for a BRK instruction and returns from all valid interrupts.
 
-.import   _stop
+.import   _brk
 .export   _irq_int, _nmi_int
 
 .segment  "CODE"
@@ -41,4 +41,5 @@ irq:       PLA                    ; Restore accumulator contents
 ; BRK detected, stop
 
 break:
-    JMP break
+    JSR _brk
+    JMP irq
