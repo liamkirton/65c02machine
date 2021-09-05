@@ -59,6 +59,7 @@ function Assemble {
     Write-Host "`n[+] Assembling *.s...`n"
 
     [void]$asms.Add(".\third_party\cc65\libsrc\common\copydata.s")
+    [void]$asms.Add(".\third_party\cc65\libsrc\common\memset.s")
     [void]$asms.Add(".\third_party\cc65\libsrc\common\zerobss.s")
 
     foreach ($base in @(".\third_party\cc65\libsrc\runtime", ".\src")) {

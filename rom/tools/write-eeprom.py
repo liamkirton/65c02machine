@@ -3,7 +3,7 @@ import argparse
 import at28c256
 
 
-def run(port, path, verify):
+def run(port, path, full, verify):
     a = at28c256.AT28C256(port=port)
 
     with open(path, 'rb') as f:
@@ -15,7 +15,10 @@ def run(port, path, verify):
     if len(new_contents) != ROM_LENGTH:
         raise Exception('[!] Error: Expected ROM Length 16384 bytes, got %d bytes' % len(new_contents))
 
-    read_contents = a.read_range(0, ROM_LENGTH)
+    if not full:
+        read_contents = a.read_range(0, ROM_LENGTH)
+    else:
+        read_contents = bytes(ROM_LENGTH)
 
     for i in range(0, ROM_LENGTH, ROM_CHUNK):
         new_chunk_size = ROM_LENGTH - i
@@ -48,6 +51,7 @@ def run(port, path, verify):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('path', type=str)
+    parser.add_argument('--full', action='store_true', default=False)
     parser.add_argument('--port', type=str, default='')
     parser.add_argument('--verify', action='store_true', default=False)
     args = parser.parse_args()
@@ -57,7 +61,7 @@ if __name__ == '__main__':
 
     try:
         print()
-        run(args.port, args.path, args.verify)
+        run(args.port, args.path, args.full, args.verify)
     except KeyboardInterrupt:
         print('\n[+] Cancelled\n')
     except Exception as ex:
