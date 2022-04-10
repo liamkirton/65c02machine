@@ -1,8 +1,8 @@
 ; ---------------------------------------------------------------------------
-; startup.s
+; init.s
 ; ---------------------------------------------------------------------------
 ;
-; Startup code for cc65 (Single Board Computer version)
+; Init code for cc65 (Single Board Computer version)
 
 .export   _init, _exit
 .import   _main, init_interrupts
@@ -15,7 +15,7 @@
 .include  "zeropage.inc"
 
 ; ---------------------------------------------------------------------------
-; Place the startup code in a special segment
+; Place the init code in a special segment
 
 .segment  "STARTUP"
 
@@ -49,3 +49,5 @@ _init:
 
 _exit:
     JMP _exit
+
+; ---------------------------------------------------------------------------

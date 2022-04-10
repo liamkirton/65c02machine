@@ -6,21 +6,11 @@
 ;
 
 .import _brk, _init
-.export initirq, doneirq, _CVAR
-
-; ------------------------------------------------------------------------
-
-VIA_BASE = $8000
-VIA_T1CL = VIA_BASE + $04
+.export initirq, doneirq
 
 ; ------------------------------------------------------------------------
 ; IRQ handling
 ; ------------------------------------------------------------------------
-
-.segment "DATA"
-
-_CVAR:
-    .word $0000
 
 .segment "CODE"
 
@@ -39,11 +29,6 @@ _irq_isr:
     AND #$10               ; Isolate B status bit
     BNE break              ; If B = 1, BRK detected
 
-    BIT VIA_T1CL
-    INC _CVAR
-    BNE endirq
-    INC _CVAR+1
-
 endirq:
     PLA
     PLX
@@ -51,7 +36,7 @@ endirq:
 
 break:
     JSR _brk
-    JMP endirq
+    JMP endirq 
 
 ; ------------------------------------------------------------------------
 ; cc65 IRQ handling stubs

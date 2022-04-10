@@ -4,8 +4,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-extern int CVAR;
-
 unsigned char *VIA_T1CL = (unsigned char *)0x8004;
 unsigned char *VIA_T1CH = (unsigned char *)0x8005;
 unsigned char *VIA_ACR = (unsigned char *)0x800b;
@@ -14,8 +12,6 @@ unsigned char *VIA_IER = (unsigned char *)0x800e;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void timers_init() {
-    CVAR = 0;
-
     *VIA_ACR = 0b01000000;
     *VIA_IER = 0b11000000;
     *VIA_T1CH = 0xff;

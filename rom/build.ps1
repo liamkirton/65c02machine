@@ -100,7 +100,6 @@ function Assemble {
 
 if ((Compile) -and (Assemble)) {
     Write-Host "`n[+] Linking *.o...`n"
-
     Write-Host "  > ld65 -> bin\rom.bin"
 
     $objs = $objs | ForEach-Object { $_[1] }
@@ -110,6 +109,9 @@ if ((Compile) -and (Assemble)) {
         Write-Host "`n[!] ld65.exe Failed"
         Exit
     }
+
+    Write-Host "  > bin\rom.bin -> ..\<fpga>\rom.hex"
+    python tools\convert-hex.py bin\rom.bin --outdir=..\fpga-rom\fpga-rom.srcs\sources_1\new\ --quiet
 
     Write-Host "`n[+] Done`n"
 }

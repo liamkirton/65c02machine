@@ -1,0 +1,5 @@
+fpga-rom.cache/
+fpga-rom.hw/
+fpga-rom.runs/
+fpga-rom.sim/
+**/rom.hex
