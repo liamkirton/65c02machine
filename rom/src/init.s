@@ -23,6 +23,20 @@
 ; A little light 6502 housekeeping
 
 _init:
+    LDA #$01
+    LDX #$00
+
+short_loop:
+    STA $A000,X
+    INX
+    CPX #$80
+    BEQ next
+    JMP short_loop
+
+next:
+    INA
+    JMP short_loop
+
     LDX #$FF
     TXS
     CLD

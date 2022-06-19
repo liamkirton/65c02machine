@@ -14,12 +14,14 @@ unsigned int VIDEO_SIZE = 0x2000;
 
 void main() {
     char c = 0;
+    char i = 0;
+    char j = 0;
 
     while (1) {
-        char i = 0;
-        for (i = 0; i < 100; ++i)
-        {
-            VIDEO[i] = c;
+       for (i = 0; i < 64; ++i) {
+            for (j = 0; j < 100; ++j) {
+                VIDEO[i * 100 + j] = c;
+            }
         }
         c++;
     }

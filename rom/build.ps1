@@ -110,9 +110,6 @@ if ((Compile) -and (Assemble)) {
         Exit
     }
 
-    Write-Host "  > bin\rom.bin -> ..\<fpga>\rom.hex"
-    python tools\convert-hex.py bin\rom.bin --outdir=..\fpga-rom\fpga-rom.srcs\sources_1\new\ --quiet
-
     Write-Host "`n[+] Done`n"
 }
 
